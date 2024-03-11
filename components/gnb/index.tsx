@@ -2,8 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import Dropdown from "@/components/Gnb/Dropdown";
-import Hammenu from "@/components/Gnb/Hammenu";
+import Dropdown from "@/components/gnb/Dropdown";
+import Hammenu from "@/components/gnb/Hammenu";
 
 function Gnb() {
   const [loginState, setLoginState] = useState(true);
