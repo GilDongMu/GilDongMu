@@ -25,7 +25,7 @@ function SampleNextArrow(props: { className: any; style: any; onClick: any }) {
       }}
     >
       <Image
-        className="-translate-x-10"
+        className="-translate-y-20"
         src="icons/arrow_right_primary.svg"
         alt="캐러셀다음버튼"
         width={32}
@@ -57,7 +57,7 @@ function SamplePrevArrow(props: { className: any; style: any; onClick: any }) {
       }}
     >
       <Image
-        className="-translate-x-10"
+        className="-translate-y-20"
         src="icons/arrow_left_primary.svg"
         alt="캐러셀이전버튼"
         width={32}
@@ -113,7 +113,7 @@ function Responsive() {
     ],
   };
   return (
-    <div className="slider-container">
+    <div className="slider-container my-custom-slider">
       <Slider {...settings}>
         <div className="flex w-40 h-40 border-2 border-black">
           <h3>1</h3>
