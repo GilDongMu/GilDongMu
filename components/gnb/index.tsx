@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 import Dropdown from "@/components/gnb/Dropdown";
 import Hammenu from "@/components/gnb/Hammenu";
-
 import useToggle from "@/hooks/useToggle";
 
 function Gnb() {

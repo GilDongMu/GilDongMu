@@ -1,4 +1,4 @@
-import ContryCarousel from "@/components/carousel/country";
+import CountryCarousel from "@/components/carousel/country/index";
 import CustomCarousel from "@/components/carousel/custom";
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
         <div className="w-1200 p-20 flex flex-col justify-center">
           <CustomCarousel />
           <div className="h-30"></div>
-          <ContryCarousel />
+          <CountryCarousel />
         </div>
       </div>
     </>
