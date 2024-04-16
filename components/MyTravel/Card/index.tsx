@@ -65,7 +65,7 @@ export default function MyTravelCard({ data, selectTab }: MyTravelCardProps) {
             <Bookmark data={data} />
           </div>
           <div
-            className={`mb-160 flex flex-col gap-4 tablet:mb-170 ${isMobile ? "mobile:mb-25" : "mobile:mb-50"} `}
+            className={`mb-160 flex flex-col gap-4 tablet:mb-170 ${isMobile ? "mobile:mb-24" : "mobile:mb-50"} `}
           >
             <Title title={data.title} isMobile={isMobile} type="front" />
             <div className="text-14 font-normal leading-5 tracking-tighter text-white tablet:text-12">
@@ -83,11 +83,11 @@ export default function MyTravelCard({ data, selectTab }: MyTravelCardProps) {
         <Title title={data.title} type="back" />
         <Image src={"/icons/dotline.svg"} alt="선" width={222} height={1} />
         <div
-          className={`mb-115 mt-24 flex flex-col tablet:mb-140 tablet:mt-16 mobile:mt-10 ${
-            isMobile ? "mobile:mb-25" : "mobile:mb-20"
+          className={`mb-117 mt-24 flex flex-col tablet:mb-140 tablet:mt-16 mobile:mt-10 ${
+            isMobile ? "mobile:mb-10" : "mobile:mb-20"
           } `}
         >
-          <div className="flex flex-col gap-8">
+          <div className="flex flex-col gap-5">
             <div className="flex items-center gap-8">
               <div className="tablet:h-12 tablet:w-12">
                 <Image
