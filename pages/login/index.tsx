@@ -191,7 +191,9 @@ export default function Login() {
               </Link>
 
               <Link
-                href={"http://3.38.76.39:8080/oauth2/authorization/google"}
+                href={
+                  "http://mylittleforest.shop:8080/oauth2/authorization/google"
+                }
                 className="w-1/2"
               >
                 <Button
