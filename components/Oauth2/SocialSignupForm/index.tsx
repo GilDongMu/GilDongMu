@@ -36,22 +36,10 @@ function SocialSignUpForm() {
 
   const router = useRouter();
 
-  const password = watch("password", "");
-
-  const [passwordShown, setPasswordShown] = useState(false);
-  const [confirmPasswordShown, setConfirmPasswordShown] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCheckEmailModalOpen, setIsCheckEmailModalOpen] = useState(false);
 
   const [oauthEmail, setOauthEmail] = useState("default@email.com");
-
-  const togglePasswordVisiblity = () => {
-    setPasswordShown(passwordShown => !passwordShown);
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setConfirmPasswordShown(confirmPasswordShown => !confirmPasswordShown);
-  };
 
   const onSubmit = async (data: SignUp) => {
     const formData = new FormData();
@@ -82,20 +70,22 @@ function SocialSignUpForm() {
     onSubmit(data);
   };
 
-  useEffect(() => {
-    const getOauthEmail = async () => {
-      try {
-        const response = await axios.get("/oauth2/token");
-        console.log(response);
-        setOauthEmail(response.data.email);
-        console.log("oauth2 이메일 조회 성공! ", response.data);
-      } catch (error) {
-        console.error("oauth2 이메일 조회 실패", error);
-      }
-    };
+  const getOauthEmail = async () => {
+    try {
+      const response = await axios.get("/oauth2/signup", {
+        baseURL: "http://3.38.76.39:8080",
+      });
+      console.log(response);
+      setOauthEmail(response.data.email);
+      console.log("oauth2 이메일 조회 성공! ", response.data);
+    } catch (error) {
+      console.error("oauth2 이메일 조회 실패", error);
+    }
+  };
 
+  useEffect(() => {
     getOauthEmail();
-  }, [oauthEmail, router]);
+  }, []);
 
   return (
     <>

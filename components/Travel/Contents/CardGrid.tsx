@@ -31,6 +31,8 @@ interface itemType {
 export interface CardData {
   content: itemType[];
   totalPages: number;
+  first: boolean;
+  last: boolean;
   numberOfElements: number;
 }
 
@@ -140,7 +142,7 @@ function CardGrid() {
 
       <div className="m-auto flex w-max items-center gap-3">
         <div
-          className="relative h-24 w-24 cursor-pointer"
+          className={`relative h-24 w-24 ${!card?.first && "cursor-pointer"}`}
           onClick={() => firstLastPage(0)}
         >
           <Image
@@ -150,7 +152,10 @@ function CardGrid() {
             sizes="24px"
           />
         </div>
-        <div className="relative h-24 w-24 cursor-pointer" onClick={prevPage}>
+        <div
+          className={`relative h-24 w-24 ${!card?.first && "cursor-pointer"}`}
+          onClick={prevPage}
+        >
           <Image
             src={"/icons/keyboard_arrow_left.svg"}
             alt="이전페이지"
@@ -180,7 +185,10 @@ function CardGrid() {
             ) : null;
           })}
         </div>
-        <div className="relative h-24 w-24 cursor-pointer" onClick={nextPage}>
+        <div
+          className={`relative h-24 w-24 ${!card?.last && "cursor-pointer"}`}
+          onClick={nextPage}
+        >
           <Image
             src={"/icons/keyboard_arrow_right.svg"}
             alt="다음페이지"
@@ -189,7 +197,7 @@ function CardGrid() {
           />
         </div>
         <div
-          className="relative h-24 w-24 cursor-pointer"
+          className={`relative h-24 w-24 ${!card?.last && "cursor-pointer"}`}
           onClick={() => firstLastPage(Number(card?.totalPages) - 1)}
         >
           <Image
