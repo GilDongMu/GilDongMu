@@ -60,7 +60,7 @@ function MainCard({ content, is }: { content: any; is: string }) {
           className="z-0 object-cover"
           sizes="180px"
         />
-        <div className="absolute left-0 top-0 h-full w-full bg-black opacity-20"></div>
+        <div className="absolute left-0 top-0 h-full w-full bg-stone-900 opacity-20"></div>
         <div className="z-1 relative w-full">
           <div className="flex justify-between">
             {content.status === "모집 완료" ? (
@@ -105,10 +105,10 @@ function MainCard({ content, is }: { content: any; is: string }) {
             )}
           </div>
 
-          <div className="mt-16 text-16 leading-tight text-white tablet:text-14 ">
+          <div className="text-text-white mt-16 text-16 leading-tight tablet:text-14 ">
             {content.title}
           </div>
-          <div className="mt-1 text-14 text-white">{content.nickname}</div>
+          <div className="text-text-white mt-1 text-14">{content.nickname}</div>
         </div>
       </div>
 

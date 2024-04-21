@@ -12,7 +12,12 @@ export default function Header() {
         onClick={onPagingBack}
         className="relative flex h-32 w-32 cursor-pointer items-center justify-center gap-10 p-8 tablet:h-24 tablet:w-24"
       >
-        <Image src="/icons/chevron_left.svg" alt="왼쪽 화살표 이미지" fill />
+        <Image
+          src="/icons/chevron_left.svg"
+          alt="왼쪽 화살표 이미지"
+          fill
+          className="dark:invert"
+        />
       </div>
       <div className="max-w-1036 flex h-48 text-center">
         <span className="text-32 font-black leading-[48px] tracking-[0.6px] text-text-01 tablet:text-24">

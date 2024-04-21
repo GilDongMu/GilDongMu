@@ -20,6 +20,7 @@
 @layer utilities {}
 
 @layer base {
+
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -120,6 +121,14 @@
 
     --sky-50: #f0f9ff;
     --sky-200: #bae6fd;
+
+    --stone-200: rgb(231 229 228);
+
+    --yellow-50: rgb(254 252 232);
+
+    --stone-100: rgb(245 245 244);
+
+    --text-white: #ffffff;
   }
 
   .dark {
@@ -132,7 +141,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: #007378;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -150,6 +159,83 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
+    --black: #ffffff;
+    --gray-50: #282733;
+    --gray-40: #5b5879;
+    --gray-30: #343140;
+    --gray-20: #1a191c;
+    --gray-200: #111113;
+    --gray-10: #0d0d0e;
+    --gray-5: #050505;
+    --white: #111322;
+
+    --red-40: #b20000;
+    --red-30: #722430;
+    --red-20: #8d4646;
+    --red-10: #422828;
+
+    --pink-500: #631354;
+
+    --blue-20: #004c99;
+    --blue-10: #334466;
+
+    --green-20: #165c14;
+    --green-10: #1a4020;
+
+    --kakao: #d2c000;
+
+    --text-01: #e8e8e8;
+    --text-02: #d9d9d9;
+    --text-03: #bfbfbf;
+    --text-04: #606070;
+    --text-05: #5c5c6d;
+
+    --bg-02: #050504;
+    --bg-03: #1a1a1a;
+    --bg-04: #111320;
+    --bg-05: #080f08;
+    --bg-06: #030602;
+
+    --dim-80: rgba(0, 0, 0, 0.8);
+    --dim-60: rgba(0, 0, 0, 0.6);
+    --dim-40: rgba(0, 0, 0, 0.4);
+
+    --primary-press: #007378;
+    --secondary-press: #4c7420;
+
+    --line-01: #2b2b2d;
+    --line-02: #181719;
+    --line-03: #336664;
+    --line-04: #2f522f;
+    --line-05: #101840;
+
+    --system-success: #1874d1;
+    --system-information: #4c2f99;
+    --system-warning: #c7621c;
+    --system-error: #a44360;
+
+    --input-error: #ffdfdf;
+
+    --rose-300: #a5313e;
+    --tag-orange-100: #321700;
+    --tag-orange-500: #763c10;
+    --tag-blue-100: #1f3648;
+    --tag-blue-500: #074684;
+    --tag-pink-100: #311226;
+    --tag-pink-500: #631354;
+
+    --sky-50: #0f202a;
+    --sky-200: #1a4060;
+
+    --stone-200: rgb(114, 114, 114);
+
+    --yellow-50: rgb(80, 80, 70);
+    --stone-100: rgb(67, 67, 67);
+
+    --text-white: #ffffff;
+
+
   }
 }
 
@@ -160,6 +246,8 @@
 
   body {
     @apply bg-background text-foreground;
+    background-color: var(--bg-color);
+    color: var(--text-color);
   }
 }
 

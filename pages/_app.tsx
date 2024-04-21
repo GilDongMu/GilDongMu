@@ -4,12 +4,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import { ThemeProvider } from "next-themes";
 import { useEffect, useState } from "react";
 
 import Gnb from "@/components/Gnb";
 import Modal from "@/components/Modal";
 import useCookie from "@/hooks/useCookie";
-import useGnbStore from "@/store/gnb";
+import useGnbStore from "@/stores/gnb";
 
 const queryClient = new QueryClient();
 
@@ -62,13 +63,19 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Gnb />
-      <Component {...pageProps} />
-      {isModalOpen && (
-        <Modal modalType="loginRequired" onClose={handleButtonClick} />
-      )}
+      <ThemeProvider
+        defaultTheme="system"
+        attribute="class"
+        themes={["light", "dark"]}
+      >
+        <Gnb />
+        <Component {...pageProps} />
+        {isModalOpen && (
+          <Modal modalType="loginRequired" onClose={handleButtonClick} />
+        )}
 
-      <ReactQueryDevtools initialIsOpen={false} />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

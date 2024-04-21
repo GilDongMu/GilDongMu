@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-import useSortStore from "@/store/choiceSort";
+import useSortStore from "@/stores/choiceSort";
 
 interface FilterBtnProps {
   text: string;

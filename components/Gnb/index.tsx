@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useTheme } from "next-themes";
 import { useEffect, useRef, useState } from "react";
 import { useOnClickOutside } from "usehooks-ts";
 
@@ -10,10 +11,10 @@ import Hammenu from "@/components/Gnb/HamMenu";
 import useCookie from "@/hooks/useCookie";
 import useToggle from "@/hooks/useToggle";
 import { getUserMe } from "@/lib/api/userMe";
-import useGnbStore from "@/store/gnb";
-
+import useGnbStore from "@/stores/gnb";
 function Gnb() {
   const [loginState, setLoginState] = useState(false);
+  const [dark, setDark] = useState(false);
   const [dropDown, setDropDown, handleDropDown] = useToggle();
   const [hamMenu, setHamMenu, handleHamMenu] = useToggle(false);
   const [isTablet, setIsTablet] = useToggle(true);
@@ -21,6 +22,7 @@ function Gnb() {
   const { gnbColor } = useGnbStore();
   const router = useRouter();
   const accessToken = useCookie("accessToken");
+  const { theme, setTheme } = useTheme();
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -100,6 +102,13 @@ function Gnb() {
   useOnClickOutside(ref, () => {
     dropDown && handleDropDown();
   });
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+  const darkMode = () => {
+    setDark(prev => !prev);
+    toggleTheme();
+  };
   return (
     <div className="relative border-b border-line-02 bg-white font-bold tracking-tight text-text-01">
       <nav className="relative z-30 mx-auto flex h-72 max-w-[1200px] items-center justify-between bg-white px-24 py-20 tablet:h-60">
@@ -137,69 +146,78 @@ function Gnb() {
             </Link>
           )}
         </div>
-
-        {!isTablet ? (
-          !loginState ? (
-            <div className="flex h-40 w-137 items-center justify-center rounded-[24px] border-[1.5px] border-teal-500 px-4 py-2.5 text-16 text-teal-500 hover:border-primary-press">
-              <Link href={"/login"} className="hover:text-primary-press">
-                로그인
-              </Link>
-              /
-              <Link href={"/signup"} className="hover:text-primary-press">
-                회원가입
-              </Link>
+        <div className="flex items-center justify-center gap-10">
+          <div className="relative h-38 w-80 rounded-16 border-2 border-black bg-white p-4 transition-colors">
+            <div
+              onClick={darkMode}
+              className={`absolute flex cursor-pointer items-center justify-center transition-all duration-300 ease-in-out ${!dark ? "left-4" : "left-46"} top-1/2 h-28 w-28 -translate-y-2/4 rounded-16 border-2 border-black bg-white`}
+            >
+              {!dark ? "🌞" : "🌙"}
             </div>
-          ) : (
-            <div ref={ref} className="relative">
-              <div
-                onClick={handleDropDown}
-                className="flex cursor-pointer items-center text-18"
-              >
-                <div className="relative mr-12 h-36 w-36 overflow-hidden rounded-full border">
-                  <Image
-                    src={
-                      userData?.profilePath
-                        ? `https://gildongmuu.s3.ap-northeast-2.amazonaws.com/${userData.profilePath}`
-                        : "/icons/defaultProfile.png"
-                    }
-                    alt="유저 프로필"
-                    fill
-                    className="object-cover"
-                    sizes="36px"
-                  />
-                </div>
-                {userData?.nickname} 님 &nbsp;
-                <div className="relative h-16 w-16">
-                  <Image
-                    src={"/icons/chevron-down.svg"}
-                    alt="드롭다운 버튼"
-                    fill
-                    className={dropDown ? "rotate-180" : ""}
-                    sizes="16px"
-                  />
-                </div>
-              </div>
-              {dropDown && (
-                <div className="relative -top-15">
-                  <Dropdown buttons={gnbs} handleDropDown={handleDropDown} />
-                </div>
-              )}
-            </div>
-          )
-        ) : (
-          <div
-            onClick={handleHamMenu}
-            className="relative h-24 w-24 cursor-pointer"
-          >
-            <Image
-              src={!hamMenu ? "/icons/menu.svg" : "/icons/close.svg"}
-              alt="햄버거메뉴"
-              fill
-              className="object-cover"
-              sizes="24px"
-            />
           </div>
-        )}
+          {!isTablet ? (
+            !loginState ? (
+              <div className="flex h-40 w-137 items-center justify-center rounded-[24px] border-[1.5px] border-teal-500 px-4 py-2.5 text-16 text-teal-500 hover:border-primary-press">
+                <Link href={"/login"} className="hover:text-primary-press">
+                  로그인
+                </Link>
+                /
+                <Link href={"/signup"} className="hover:text-primary-press">
+                  회원가입
+                </Link>
+              </div>
+            ) : (
+              <div ref={ref} className="relative">
+                <div
+                  onClick={handleDropDown}
+                  className="flex cursor-pointer items-center text-18"
+                >
+                  <div className="relative mr-12 h-36 w-36 overflow-hidden rounded-full border">
+                    <Image
+                      src={
+                        userData?.profilePath
+                          ? `https://gildongmuu.s3.ap-northeast-2.amazonaws.com/${userData.profilePath}`
+                          : "/icons/defaultProfile.png"
+                      }
+                      alt="유저 프로필"
+                      fill
+                      className="object-cover"
+                      sizes="36px"
+                    />
+                  </div>
+                  {userData?.nickname} 님 &nbsp;
+                  <div className="relative h-16 w-16">
+                    <Image
+                      src={"/icons/chevron-down.svg"}
+                      alt="드롭다운 버튼"
+                      fill
+                      className={dropDown ? "rotate-180" : ""}
+                      sizes="16px"
+                    />
+                  </div>
+                </div>
+                {dropDown && (
+                  <div className="relative -top-15">
+                    <Dropdown buttons={gnbs} handleDropDown={handleDropDown} />
+                  </div>
+                )}
+              </div>
+            )
+          ) : (
+            <div
+              onClick={handleHamMenu}
+              className="relative h-24 w-24 cursor-pointer dark:invert"
+            >
+              <Image
+                src={!hamMenu ? "/icons/menu.svg" : "/icons/close.svg"}
+                alt="햄버거메뉴"
+                fill
+                className="object-cover"
+                sizes="24px"
+              />
+            </div>
+          )}
+        </div>
       </nav>
 
       {isTablet && (

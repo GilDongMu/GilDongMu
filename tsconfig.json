@@ -21,9 +21,10 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "store/gnb.js",
+    "stores/gnb.js",
     "lib/api/axios.js",
-    "lib/utils/regexp.ts"
+    "lib/utils/regexp.ts",
+    "stores/dark.js"
   ],
   "exclude": ["node_modules"]
 }
