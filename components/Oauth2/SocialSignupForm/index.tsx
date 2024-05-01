@@ -73,7 +73,7 @@ function SocialSignUpForm() {
   const getOauthEmail = async () => {
     try {
       const response = await axios.get("/oauth2/signup", {
-        baseURL: "http://3.38.76.39:8080",
+        baseURL: "http://mylittleforest.shop:8080",
       });
       console.log(response);
       setOauthEmail(response.data.email);

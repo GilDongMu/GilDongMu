@@ -172,7 +172,9 @@ export default function Login() {
 
             <div className="flex w-full items-center justify-between gap-20 text-18 mobile:text-16">
               <Link
-                href={"http://3.38.76.39:8080/oauth2/authorization/kakao"}
+                href={
+                  "http://mylittleforest.shop:8080/oauth2/authorization/kakao"
+                }
                 className="w-1/2"
               >
                 <Button
