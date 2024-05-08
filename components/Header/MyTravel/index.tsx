@@ -19,7 +19,7 @@ export default function MyTravelHeader() {
             height={32}
           />
         </button>
-        <div className="w-[1036px] text-center text-32 font-extrabold leading-9 tracking-tight text-white tablet:w-[636px] tablet:text-24 mobile:w-228">
+        <div className="text-text-white w-[1036px] text-center text-32 font-extrabold leading-9 tracking-tight tablet:w-[636px] tablet:text-24 mobile:w-228">
           내 여행
         </div>
       </div>

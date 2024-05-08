@@ -38,6 +38,9 @@ const config = {
       },
     },
     extend: {
+      filter: {
+        invert: "invert(1)",
+      },
       borderRadius: px0_50,
       fontSize: px0_100,
       spacing: px0_200,
@@ -131,6 +134,10 @@ const config = {
         "tag-pink-500": "var(--tag-pink-500)",
         "sky-50": "var(--sky-50)",
         "sky-200": "var(--sky-200)",
+        "stone-200": "var(--stone-200)",
+        "yellow-50": "var(--yellow-50)",
+        "stone-100": "var(--stone-100)",
+        "text-white": "var(--text-white)",
       },
       keyframes: {
         fadeDown: {
