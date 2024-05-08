@@ -1,4 +1,5 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
@@ -108,25 +109,36 @@ export default function MyTravel() {
 
             {!cardData ||
               (cardData.pages?.[0].length === 0 && (
-                <div className="flex h-screen w-full flex-col items-center gap-32 bg-white tablet:gap-24">
-                  <div className="flex flex-col items-center justify-center gap-24 tablet:gap-20">
-                    <Image
-                      src={"/images/Image_Travel.png"}
-                      alt="내여행 이미지"
-                      width={240}
-                      height={160}
-                      className="h-160 w-240 tablet:h-128 tablet:w-192"
-                    />
-                    <div className="text-24 font-semibold leading-[31.2px] tracking-tighter text-text-01 tablet:text-20">
-                      참여 중인 길동무 모임이 없어요!
+                <motion.div
+                  className="box"
+                  initial={{ opacity: 0, scale: 0.5 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{
+                    duration: 0.8,
+                    delay: 0.5,
+                    ease: [0, 0.71, 0.2, 1.01],
+                  }}
+                >
+                  <div className="flex h-screen w-full flex-col items-center gap-32 bg-white tablet:gap-24">
+                    <div className="flex flex-col items-center justify-center gap-24 tablet:gap-20">
+                      <Image
+                        src={"/images/Image_Travel.png"}
+                        alt="내여행 이미지"
+                        width={240}
+                        height={160}
+                        className="h-160 w-240 tablet:h-128 tablet:w-192"
+                      />
+                      <div className="text-24 font-semibold leading-[31.2px] tracking-tighter text-text-01 tablet:text-20">
+                        참여 중인 길동무 모임이 없어요!
+                      </div>
                     </div>
+                    <Link href={"/travel"}>
+                      <button className="flex h-52 w-200 items-center justify-center rounded-32 border border-stone-700 px-10 py-16 text-center font-bold leading-5 text-stone-700 hover:border-stone-500 hover:text-stone-500 tablet:h-44 tablet:w-180">
+                        길동무 찾으러 가기
+                      </button>
+                    </Link>
                   </div>
-                  <Link href={"/travel"}>
-                    <button className="h-52 w-200 rounded-32 border border-stone-700 px-10 py-16 text-center font-bold leading-5 text-stone-700 hover:border-stone-500 hover:text-stone-500 tablet:h-44 tablet:w-180">
-                      길동무 찾으러 가기
-                    </button>
-                  </Link>
-                </div>
+                </motion.div>
               ))}
 
             {hasNextPage && (

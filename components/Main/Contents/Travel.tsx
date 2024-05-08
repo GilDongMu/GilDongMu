@@ -51,7 +51,7 @@ export default function Travel() {
           <div className="mx-36 flex items-center justify-center mobile:mx-0">
             <div
               style={{ width: "100%" }}
-              className="gap-24 rounded-32 bg-white px-30 pb-8 pt-24 tablet:gap-3 mobile:gap-3"
+              className="h-[324px] gap-24 rounded-32 bg-white px-30 pb-8 pt-24 tablet:gap-3 mobile:gap-3"
             >
               {choice === "latest" ? (
                 <TravelCarousel choice={"latest"} />

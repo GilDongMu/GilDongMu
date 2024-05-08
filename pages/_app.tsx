@@ -49,7 +49,7 @@ export default function App({ Component, pageProps }: AppProps) {
     ) {
       timer = setTimeout(() => {
         setIsModalOpen(true);
-      }, 10000);
+      }, 1000);
     } else if (
       (router.pathname.startsWith("/login") ||
         router.pathname.startsWith("/signup")) &&
