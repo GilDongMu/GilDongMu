@@ -206,7 +206,7 @@ function Chat() {
           <input
             autoComplete="off"
             type="text"
-            className="h-full flex-1 rounded-32 px-20 outline-none"
+            className="h-full flex-1 rounded-32 bg-white px-20 outline-none"
             placeholder="메시지 보내기"
             {...register("message")}
           />

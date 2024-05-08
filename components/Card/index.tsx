@@ -61,7 +61,7 @@ function Card({ content }: { content: any }) {
           fill
           className="z-0 object-cover"
         />
-        <div className="absolute left-0 top-0 h-full w-full bg-black opacity-20"></div>
+        <div className="bg-stone-999 absolute left-0 top-0 h-full w-full opacity-20"></div>
         <div className="z-1 relative w-full">
           <div className="flex items-center justify-between">
             {content.status === "모집 완료" ? (
@@ -106,10 +106,10 @@ function Card({ content }: { content: any }) {
             )}
           </div>
 
-          <div className="mt-16 text-16 leading-tight text-white tablet:text-14 ">
+          <div className="text-text-white mt-16 text-16 leading-tight tablet:text-14 ">
             {content.title}
           </div>
-          <div className="mt-1 text-14 text-white">{content.nickname}</div>
+          <div className="text-text-white mt-1 text-14">{content.nickname}</div>
         </div>
       </div>
 

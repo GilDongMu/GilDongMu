@@ -65,7 +65,7 @@ function ChatHeader({ chatHeader }: chatHeaderProp) {
         </div>
       </div>
 
-      <div className="relative z-20 h-32 w-32">
+      <div className="relative z-20 h-32 w-32 dark:invert">
         <Image
           onClick={() => setHammenu(prev => !prev)}
           src={hammenu ? "/icons/menu.svg" : "/icons/close.svg"}
@@ -78,7 +78,7 @@ function ChatHeader({ chatHeader }: chatHeaderProp) {
         <>
           <div
             onClick={() => setHammenu(prev => !prev)}
-            className="fixed left-0 top-0 z-10 h-screen w-screen bg-black opacity-60"
+            className="fixed left-0 top-0 z-10 h-screen w-screen bg-stone-900 opacity-60"
           />
           <div className="fixed right-0 top-0 z-10 flex h-full w-3/4 flex-col gap-24 bg-white p-20">
             <div className="pt-13 text-18 font-bold">참여 인원</div>
