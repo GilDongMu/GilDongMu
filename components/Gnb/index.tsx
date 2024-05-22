@@ -18,6 +18,7 @@ function Gnb() {
   const [dropDown, setDropDown, handleDropDown] = useToggle();
   const [hamMenu, setHamMenu, handleHamMenu] = useToggle(false);
   const [isTablet, setIsTablet] = useToggle(true);
+  const [isNotice, setIsNotice, handleNotice] = useToggle(false);
   const [gnb, setGnb] = useState("hover:text-primary-press");
   const { gnbColor } = useGnbStore();
   const router = useRouter();
@@ -102,6 +103,9 @@ function Gnb() {
   useOnClickOutside(ref, () => {
     dropDown && handleDropDown();
   });
+  useOnClickOutside(ref, () => {
+    isNotice && handleNotice();
+  });
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
@@ -147,13 +151,27 @@ function Gnb() {
           )}
         </div>
         <div className="flex items-center justify-center gap-10">
-          <div className="relative h-38 w-80 rounded-16 border-2 border-black bg-white p-4 transition-colors">
+          <div
+            onClick={darkMode}
+            className="relative h-38 w-80 cursor-pointer rounded-16 border-2 border-black bg-white p-4 transition-colors"
+          >
             <div
-              onClick={darkMode}
-              className={`absolute flex cursor-pointer items-center justify-center transition-all duration-300 ease-in-out ${!dark ? "left-4" : "left-46"} top-1/2 h-28 w-28 -translate-y-2/4 rounded-16 border-2 border-black bg-white`}
+              className={`absolute flex items-center justify-center transition-all duration-300 ease-in-out ${!dark ? "left-4" : "left-46"} top-1/2 h-28 w-28 -translate-y-2/4 rounded-16 border-2 border-black bg-white`}
             >
               {!dark ? "🌞" : "🌙"}
             </div>
+          </div>
+          <div
+            className="relative mx-5 h-26 w-26 cursor-pointer"
+            onClick={handleNotice}
+          >
+            <Image
+              src={"/icons/notice.png"}
+              alt="알림"
+              fill
+              className="object-cover"
+              sizes="36px"
+            />
           </div>
           {!isTablet ? (
             !loginState ? (
@@ -219,6 +237,30 @@ function Gnb() {
           )}
         </div>
       </nav>
+
+      {isNotice && (
+        <div
+          ref={ref}
+          className="absolute right-[300px] top-65 z-30 flex min-h-[600px] w-max min-w-[500px] flex-col items-center justify-center gap-20 rounded-16 bg-white p-16 text-16 shadow tablet:text-14"
+        >
+          {false ? (
+            <></>
+          ) : (
+            <>
+              <div className="relative mx-5 h-100 w-100">
+                <Image
+                  src={"/icons/notice.png"}
+                  alt="알림"
+                  fill
+                  className="object-cover"
+                  sizes="100px"
+                />
+              </div>
+              <p className="text-20">여기에 알림이 표시됩니다.</p>
+            </>
+          )}
+        </div>
+      )}
 
       {isTablet && (
         <div
