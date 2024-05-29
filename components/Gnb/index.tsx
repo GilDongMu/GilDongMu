@@ -255,7 +255,25 @@ function Gnb() {
             ref={refNotice}
             className="absolute right-20 top-65 z-30 flex min-h-[600px] w-max min-w-[500px] flex-col items-center justify-center gap-20 rounded-16 bg-white p-16 text-16 shadow tablet:text-14"
           >
-            <div className=""></div>
+            <div className="absolute -right-25 top-10 flex w-100 gap-10">
+              <Image
+                src={"/icons/delete.png"}
+                alt="지우기"
+                sizes="24px"
+                width={24}
+                height={24}
+                className="cursor-pointer"
+              />
+              <Image
+                src={"/icons/close.svg"}
+                alt="지우기"
+                sizes="24px"
+                width={24}
+                height={24}
+                className="cursor-pointer"
+                onClick={() => setIsNotice(false)}
+              />
+            </div>
             <div className="text-20">알림</div>
             {!notice ? (
               <div className="flex h-full min-h-[500px] w-full flex-col items-center gap-6 overflow-hidden rounded-10 border-2 border-green-20 p-6">

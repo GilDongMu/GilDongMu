@@ -50,18 +50,15 @@ function Notice() {
         />
       </div>
 
-      <div
-        className="relative h-20 w-20 cursor-pointer"
-        onClick={handleDropDown}
-      >
+      <div className="relative h-20 w-20" onClick={handleDropDown} ref={ref}>
         <Image
           src={"/icons/notice.png"}
           alt="알림 설정"
           fill
-          className="object-cover"
+          className="cursor-pointer object-cover"
           sizes="20px"
         />
-        <div ref={ref}>
+        <div>
           {dropDown && (
             <Dropdown buttons={gnbs} handleDropDown={handleDropDown} />
           )}
