@@ -8,6 +8,7 @@ import { useOnClickOutside } from "usehooks-ts";
 
 import Dropdown from "@/components/DropDown";
 import Hammenu from "@/components/Gnb/HamMenu";
+import Notice from "@/components/Gnb/Notice";
 import useCookie from "@/hooks/useCookie";
 import useToggle from "@/hooks/useToggle";
 import { getUserMe } from "@/lib/api/userMe";
@@ -19,6 +20,7 @@ function Gnb() {
   const [hamMenu, setHamMenu, handleHamMenu] = useToggle(false);
   const [isTablet, setIsTablet] = useToggle(true);
   const [isNotice, setIsNotice, handleNotice] = useToggle(false);
+  const [notice, setNotice] = useState<Boolean>(false);
   const [gnb, setGnb] = useState("hover:text-primary-press");
   const { gnbColor } = useGnbStore();
   const router = useRouter();
@@ -26,6 +28,7 @@ function Gnb() {
   const { theme, setTheme } = useTheme();
 
   const ref = useRef<HTMLDivElement>(null);
+  const refNotice = useRef<HTMLDivElement>(null);
 
   const deleteCookie = () => {
     document.cookie =
@@ -42,6 +45,17 @@ function Gnb() {
     queryFn: () => getUserMe(),
     enabled: loginState,
   });
+  const { data: noticeData } = useQuery({
+    queryKey: ["noticeData"],
+    queryFn: () => getNotice(),
+    enabled: loginState,
+  });
+
+  useEffect(() => {
+    if (noticeData) {
+      setNotice(true);
+    }
+  }, [noticeData]);
 
   const gnbs = [
     {
@@ -103,7 +117,7 @@ function Gnb() {
   useOnClickOutside(ref, () => {
     dropDown && handleDropDown();
   });
-  useOnClickOutside(ref, () => {
+  useOnClickOutside(refNotice, () => {
     isNotice && handleNotice();
   });
   const toggleTheme = () => {
@@ -236,31 +250,35 @@ function Gnb() {
             </div>
           )}
         </div>
-      </nav>
-
-      {isNotice && (
-        <div
-          ref={ref}
-          className="absolute right-[300px] top-65 z-30 flex min-h-[600px] w-max min-w-[500px] flex-col items-center justify-center gap-20 rounded-16 bg-white p-16 text-16 shadow tablet:text-14"
-        >
-          {false ? (
-            <></>
-          ) : (
-            <>
-              <div className="relative mx-5 h-100 w-100">
-                <Image
-                  src={"/icons/notice.png"}
-                  alt="알림"
-                  fill
-                  className="object-cover"
-                  sizes="100px"
-                />
+        {isNotice && (
+          <div
+            ref={refNotice}
+            className="absolute right-20 top-65 z-30 flex min-h-[600px] w-max min-w-[500px] flex-col items-center justify-center gap-20 rounded-16 bg-white p-16 text-16 shadow tablet:text-14"
+          >
+            <div className=""></div>
+            <div className="text-20">알림</div>
+            {!notice ? (
+              <div className="flex h-full min-h-[500px] w-full flex-col items-center gap-6 overflow-hidden rounded-10 border-2 border-green-20 p-6">
+                <Notice />
+                <Notice />
               </div>
-              <p className="text-20">여기에 알림이 표시됩니다.</p>
-            </>
-          )}
-        </div>
-      )}
+            ) : (
+              <div className="flex h-full min-h-[500px] flex-col items-center justify-center gap-50">
+                <div className="relative mx-5 h-100 w-100">
+                  <Image
+                    src={"/icons/notice.png"}
+                    alt="알림"
+                    fill
+                    className="object-cover"
+                    sizes="100px"
+                  />
+                </div>
+                <p className="text-20">여기에 알림이 표시됩니다.</p>
+              </div>
+            )}
+          </div>
+        )}
+      </nav>
 
       {isTablet && (
         <div

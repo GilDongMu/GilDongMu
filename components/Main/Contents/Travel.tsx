@@ -31,7 +31,7 @@ export default function Travel() {
               onClick={() => handleMain("latest")}
               className={`flex h-44 w-90 items-center justify-center gap-4 rounded-32 px-16 py-10 text-center text-16 font-extrabold leading-5 tablet:h-36 tablet:w-72 tablet:text-14 mobile:h-32 ${
                 currentSort === "latest"
-                  ? "text-text-white bg-primary hover:bg-primary-press"
+                  ? "bg-primary text-text-white hover:bg-primary-press"
                   : "border-[1.5px] border-primary bg-bg-06 text-primary hover:border-primary-press hover:text-primary-press"
               }`}
             >
@@ -41,7 +41,7 @@ export default function Travel() {
               onClick={() => handleMain("latest-trip")}
               className={`flex h-44 w-90 items-center justify-center gap-4 rounded-32 px-16 py-10 text-center text-16 font-extrabold leading-5 tablet:h-36 tablet:w-72 tablet:text-14 mobile:h-32 ${
                 currentSort === "latest-trip"
-                  ? "text-text-white bg-primary hover:bg-primary-press"
+                  ? "bg-primary text-text-white hover:bg-primary-press"
                   : "border-[1.5px] border-primary bg-bg-06 text-primary hover:border-primary-press hover:text-primary-press"
               }`}
             >
@@ -51,7 +51,7 @@ export default function Travel() {
           <div className="mx-36 flex items-center justify-center mobile:mx-0">
             <div
               style={{ width: "100%" }}
-              className="h-[324px] gap-24 rounded-32 bg-white px-30 pb-8 pt-24 tablet:gap-3 mobile:gap-3"
+              className="min-h-[324px] gap-24 rounded-32 bg-white px-30 pb-8 pt-24 tablet:gap-3 mobile:gap-3"
             >
               {choice === "latest" ? (
                 <TravelCarousel choice={"latest"} />
