@@ -38,7 +38,7 @@ function DetailTitle({ data }: DetailDataType) {
   });
 
   const isApply = status;
-  console.log(applyData, status, error);
+
   const isSubmit = false;
 
   const titleData = {
@@ -58,6 +58,7 @@ function DetailTitle({ data }: DetailDataType) {
   const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
   const [isBookmarked, setIsBookmarked] = useState(myBookMark);
+  const [share, setShare] = useState(false);
 
   const { mutate: applyMutate } = useMutation({
     mutationFn: () => postParticipants(data.id),
@@ -104,6 +105,13 @@ function DetailTitle({ data }: DetailDataType) {
       postbookmark();
     }
     setIsBookmarked(!isBookmarked);
+  };
+  const handleShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    setShare(true);
+    setTimeout(() => {
+      setShare(false);
+    }, 3000);
   };
 
   const handleClick = (e: any) => {
@@ -172,7 +180,18 @@ function DetailTitle({ data }: DetailDataType) {
                 </button>
               </div>
             ) : (
-              <div className="mx-auto flex w-full gap-16 mobile:absolute mobile:top-110">
+              <div className="mx-auto flex w-full items-center gap-16 mobile:absolute mobile:top-110">
+                <div
+                  className="relative h-34 w-34 cursor-pointer tablet:h-26 tablet:w-26"
+                  onClick={handleShare}
+                >
+                  <Image
+                    src={"/icons/share.svg"}
+                    alt="공유하기"
+                    fill
+                    sizes="24px"
+                  />
+                </div>
                 <button
                   type="button"
                   className={`relative h-44 w-44 ${isRotating ? "heartRotate" : ""} tablet:h-36 tablet:w-36`}
@@ -270,6 +289,11 @@ function DetailTitle({ data }: DetailDataType) {
             setIsProfileModalOpen(false);
           }}
         />
+      )}
+      {share && (
+        <div className="left-50% fixed bottom-30 z-[100] mx-4 animate-bounce rounded-6 bg-red-500 p-10 text-white mobile:text-12">
+          {window.location.href}가 복사되었습니다!
+        </div>
       )}
     </>
   );
