@@ -42,7 +42,7 @@ export default function Login() {
       });
 
       const { accessToken } = response.data;
-      document.cookie = `accessToken=${accessToken}; path=/; max-age=86400; secure; samesite=strict`;
+      document.cookie = `accessToken=${accessToken}; path=/; max-age=86400; samesite=strict`;
 
       router.push("/");
     } catch (error: any) {
