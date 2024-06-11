@@ -1,5 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { motion } from "framer-motion";
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
@@ -71,99 +72,107 @@ export default function MyTravel() {
   }, [fetchNextPage, inView]);
 
   return (
-    <div className="relative flex flex-col items-center justify-center bg-[#818CF8]">
-      <MyTravelHeader />
-      <TabMenu selectTab={selectTab} onTabChange={handleTabChange} />
-      <div className="z-5 mt-40 flex w-full items-center justify-center">
-        <div
-          className={`relative flex min-h-screen w-full justify-center rounded-t-48 bg-white ${
-            cardData?.pages?.[0] && cardData && cardData.pages?.[0].length > 0
-              ? "py-80 tablet:py-64"
-              : "py-[250px]"
-          } px-24 `}
-        >
-          <Image
-            src={"/icons/motorcycle.svg"}
-            alt="오도방구 아이콘"
-            width={100}
-            height={100}
-            className="absolute -top-70 right-[8%] h-100 w-100 mobile:hidden"
-          />
+    <>
+      <Head>
+        <title>내 여행 - {selectTab}</title>
+        <meta name="description" content="여행 친구를 구해봐요! 길동무" />
+      </Head>
+      <div className="relative flex flex-col items-center justify-center bg-[#818CF8]">
+        <MyTravelHeader />
+        <TabMenu selectTab={selectTab} onTabChange={handleTabChange} />
+        <div className="z-5 mt-40 flex w-full items-center justify-center">
           <div
-            className={`gap-24 ${
+            className={`relative flex min-h-screen w-full justify-center rounded-t-48 bg-white ${
               cardData?.pages?.[0] && cardData && cardData.pages?.[0].length > 0
-                ? "grid grid-flow-row auto-rows-max grid-cols-4 tablet:grid-cols-3 mobile:grid-cols-2"
-                : "flex items-center justify-center self-stretch"
-            }`}
+                ? "py-80 tablet:py-64"
+                : "py-[250px]"
+            } px-24 `}
           >
-            {cardData?.pages?.[0] &&
-              cardData &&
-              cardData.pages?.[0].length > 0 && (
-                <>
-                  {cardData.pages.map(page =>
-                    page.map((card: any, index: number) => (
-                      <MyTravelCard
-                        key={index}
-                        data={card}
-                        selectTab={selectTab}
-                      />
-                    )),
-                  )}
-                </>
-              )}
-
-            {!cardData ||
-              (cardData.pages?.[0] && cardData.pages?.[0].length === 0 && (
-                <motion.div
-                  className="box"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.5,
-                    ease: [0, 0.71, 0.2, 1.01],
-                  }}
-                >
-                  <div className="flex h-screen w-full flex-col items-center gap-32 bg-white tablet:gap-24">
-                    <div className="flex flex-col items-center justify-center gap-24 tablet:gap-20">
-                      <Image
-                        src={"/images/Image_Travel.png"}
-                        alt="내여행 이미지"
-                        width={240}
-                        height={160}
-                        className="h-160 w-240 tablet:h-128 tablet:w-192"
-                      />
-                      <div className="text-24 font-semibold leading-[31.2px] tracking-tighter text-text-01 tablet:text-20">
-                        참여 중인 길동무 모임이 없어요!
-                      </div>
-                    </div>
-                    <Link href={"/travel"}>
-                      <button className="flex h-52 w-200 items-center justify-center rounded-32 border border-stone-700 px-10 py-16 text-center font-bold leading-5 text-stone-700 hover:border-stone-500 hover:text-stone-500 tablet:h-44 tablet:w-180">
-                        길동무 찾으러 가기
-                      </button>
-                    </Link>
-                  </div>
-                </motion.div>
-              ))}
-
-            {hasNextPage && (
-              <div className="flex w-full justify-center">
-                {isFetchingNextPage ? (
-                  <Skeleton className="h-[20px] w-[100px] rounded-full" />
-                ) : (
-                  <div ref={ref} />
+            <Image
+              src={"/icons/motorcycle.svg"}
+              alt="오도방구 아이콘"
+              width={100}
+              height={100}
+              className="absolute -top-70 right-[8%] h-100 w-100 mobile:hidden"
+            />
+            <div
+              className={`gap-24 ${
+                cardData?.pages?.[0] &&
+                cardData &&
+                cardData.pages?.[0].length > 0
+                  ? "grid grid-flow-row auto-rows-max grid-cols-4 tablet:grid-cols-3 mobile:grid-cols-2"
+                  : "flex items-center justify-center self-stretch"
+              }`}
+            >
+              {cardData?.pages?.[0] &&
+                cardData &&
+                cardData.pages?.[0].length > 0 && (
+                  <>
+                    {cardData.pages.map(page =>
+                      page.map((card: any, index: number) => (
+                        <MyTravelCard
+                          key={index}
+                          data={card}
+                          selectTab={selectTab}
+                        />
+                      )),
+                    )}
+                  </>
                 )}
-              </div>
-            )}
+
+              {!cardData ||
+                (cardData.pages?.[0] && cardData.pages?.[0].length === 0 && (
+                  <motion.div
+                    className="box"
+                    initial={{ opacity: 0, scale: 0.5 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      duration: 0.8,
+                      delay: 0.5,
+                      ease: [0, 0.71, 0.2, 1.01],
+                    }}
+                  >
+                    <div className="flex h-screen w-full flex-col items-center gap-32 bg-white tablet:gap-24">
+                      <div className="flex flex-col items-center justify-center gap-24 tablet:gap-20">
+                        <Image
+                          src={"/images/Image_Travel.png"}
+                          alt="내여행 이미지"
+                          width={240}
+                          height={160}
+                          className="h-160 w-240 tablet:h-128 tablet:w-192"
+                        />
+                        <div className="text-24 font-semibold leading-[31.2px] tracking-tighter text-text-01 tablet:text-20">
+                          참여 중인 길동무 모임이 없어요!
+                        </div>
+                      </div>
+                      <Link href={"/travel"}>
+                        <button className="flex h-52 w-200 items-center justify-center rounded-32 border border-stone-700 px-10 py-16 text-center font-bold leading-5 text-stone-700 hover:border-stone-500 hover:text-stone-500 tablet:h-44 tablet:w-180">
+                          길동무 찾으러 가기
+                        </button>
+                      </Link>
+                    </div>
+                  </motion.div>
+                ))}
+
+              {hasNextPage && (
+                <div className="flex w-full justify-center">
+                  {isFetchingNextPage ? (
+                    <Skeleton className="h-[20px] w-[100px] rounded-full" />
+                  ) : (
+                    <div ref={ref} />
+                  )}
+                </div>
+              )}
+            </div>
           </div>
         </div>
+        <div
+          className="fixed bottom-40 right-40 z-10 h-64 w-64 animate-bounce cursor-pointer tablet:h-56 tablet:w-56 mobile:bottom-20 mobile:right-20"
+          onClick={scrollToTop}
+        >
+          <Image src="/icons/rocket.svg" alt="로켓 이미지" fill />
+        </div>
       </div>
-      <div
-        className="fixed bottom-40 right-40 z-10 h-64 w-64 animate-bounce cursor-pointer tablet:h-56 tablet:w-56 mobile:bottom-20 mobile:right-20"
-        onClick={scrollToTop}
-      >
-        <Image src="/icons/rocket.svg" alt="로켓 이미지" fill />
-      </div>
-    </div>
+    </>
   );
 }

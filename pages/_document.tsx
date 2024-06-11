@@ -3,7 +3,28 @@ import { Head, Html, Main, NextScript } from "next/document";
 export default function Document() {
   return (
     <Html lang="ko">
-      <Head />
+      <Head>
+        <link rel="icon" href="/icons/symbol.svg" />
+
+        {/* Open Graph 메타 태그 */}
+        <meta property="og:title" content="길동무 gildongmu" />
+        <meta
+          property="og:description"
+          content="여행 친구를 구해봐요! 길동무"
+        />
+        <meta property="og:image" content="/icons/symbol.svg" />
+        <meta property="og:url" content="http://34.228.244.93:3000/" />
+        <meta property="og:type" content="website" />
+
+        {/* Twitter 메타 태그 */}
+        <meta name="twitter:card" content="/icons/symbol.svg" />
+        <meta name="twitter:title" content="길동무 gildongmu" />
+        <meta
+          name="twitter:description"
+          content="여행 친구를 구해봐요! 길동무"
+        />
+        <meta name="twitter:image" content="/icons/symbol.svg" />
+      </Head>
       <body className="font-nanum-square-round">
         <Main />
         <NextScript />

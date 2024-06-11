@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -66,6 +67,10 @@ export default function Login() {
 
   return (
     <>
+      <Head>
+        <title>로그인</title>
+        <meta name="description" content="여행 친구를 구해봐요! 길동무" />
+      </Head>
       {loginErrorModal ? (
         <Modal
           modalType={errorType === 0 ? "emailNotFound" : "passwordMismatch"}
