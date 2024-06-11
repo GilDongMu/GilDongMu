@@ -8,7 +8,7 @@ import { useOnClickOutside } from "usehooks-ts";
 
 import Dropdown from "@/components/DropDown";
 import Hammenu from "@/components/Gnb/HamMenu";
-import Notice from "@/components/Gnb/Notice";
+// import Notice from "@/components/Gnb/Notice";
 import useCookie from "@/hooks/useCookie";
 import useToggle from "@/hooks/useToggle";
 import { getUserMe } from "@/lib/api/userMe";
@@ -19,8 +19,8 @@ function Gnb() {
   const [dropDown, setDropDown, handleDropDown] = useToggle();
   const [hamMenu, setHamMenu, handleHamMenu] = useToggle(false);
   const [isTablet, setIsTablet] = useToggle(true);
-  const [isNotice, setIsNotice, handleNotice] = useToggle(false);
-  const [notice, setNotice] = useState<Boolean>(false);
+  // const [isNotice, setIsNotice, handleNotice] = useToggle(false);
+  // const [notice, setNotice] = useState<Boolean>(false);
   const [gnb, setGnb] = useState("hover:text-primary-press");
   const { gnbColor } = useGnbStore();
   const router = useRouter();
@@ -28,7 +28,7 @@ function Gnb() {
   const { theme, setTheme } = useTheme();
 
   const ref = useRef<HTMLDivElement>(null);
-  const refNotice = useRef<HTMLDivElement>(null);
+  // const refNotice = useRef<HTMLDivElement>(null);
 
   const deleteCookie = () => {
     document.cookie =
@@ -45,17 +45,17 @@ function Gnb() {
     queryFn: () => getUserMe(),
     enabled: loginState,
   });
-  const { data: noticeData } = useQuery({
-    queryKey: ["noticeData"],
-    queryFn: () => getNotice(),
-    enabled: loginState,
-  });
+  // const { data: noticeData } = useQuery({
+  //   queryKey: ["noticeData"],
+  //   queryFn: () => getNotice(),
+  //   enabled: loginState,
+  // });
 
-  useEffect(() => {
-    if (noticeData) {
-      setNotice(true);
-    }
-  }, [noticeData]);
+  // useEffect(() => {
+  //   if (noticeData) {
+  //     setNotice(true);
+  //   }
+  // }, [noticeData]);
 
   const gnbs = [
     {
@@ -117,9 +117,9 @@ function Gnb() {
   useOnClickOutside(ref, () => {
     dropDown && handleDropDown();
   });
-  useOnClickOutside(refNotice, () => {
-    isNotice && handleNotice();
-  });
+  // useOnClickOutside(refNotice, () => {
+  //   isNotice && handleNotice();
+  // });
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
@@ -175,7 +175,7 @@ function Gnb() {
               {!dark ? "🌞" : "🌙"}
             </div>
           </div>
-          <div
+          {/* <div
             className="relative mx-5 h-26 w-26 cursor-pointer"
             onClick={handleNotice}
           >
@@ -186,7 +186,7 @@ function Gnb() {
               className="object-cover"
               sizes="36px"
             />
-          </div>
+          </div> */}
           {!isTablet ? (
             !loginState ? (
               <div className="flex h-40 w-137 items-center justify-center rounded-[24px] border-[1.5px] border-teal-500 px-4 py-2.5 text-16 text-teal-500 hover:border-primary-press">
@@ -250,7 +250,7 @@ function Gnb() {
             </div>
           )}
         </div>
-        {isNotice && (
+        {/* {isNotice && (
           <div
             ref={refNotice}
             className="absolute right-20 top-65 z-30 flex min-h-[600px] w-max min-w-[500px] flex-col items-center justify-center gap-20 rounded-16 bg-white p-16 text-16 shadow tablet:text-14"
@@ -295,7 +295,7 @@ function Gnb() {
               </div>
             )}
           </div>
-        )}
+        )} */}
       </nav>
 
       {isTablet && (

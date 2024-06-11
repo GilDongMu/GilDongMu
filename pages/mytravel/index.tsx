@@ -32,6 +32,9 @@ export default function MyTravel() {
           `/posts/me?page=${pageParam}&size=12&sort=&type=LEADER`,
         );
         return temp.data.content;
+      } else if (selectTab === "최근 본 글") {
+        const temp = await axios.get(`/histories`);
+        return temp.data;
       } else {
         const temp = await axios.get("/bookmarks");
         return temp.data;
@@ -51,7 +54,7 @@ export default function MyTravel() {
     initialPageParam: 0,
 
     getNextPageParam: (lastPage, pages) => {
-      if (lastPage.length === 12) {
+      if (lastPage && lastPage.length === 12) {
         return pages.length + 1;
       } else {
         return undefined;
@@ -74,7 +77,7 @@ export default function MyTravel() {
       <div className="z-5 mt-40 flex w-full items-center justify-center">
         <div
           className={`relative flex min-h-screen w-full justify-center rounded-t-48 bg-white ${
-            cardData && cardData.pages?.[0].length > 0
+            cardData?.pages?.[0] && cardData && cardData.pages?.[0].length > 0
               ? "py-80 tablet:py-64"
               : "py-[250px]"
           } px-24 `}
@@ -88,27 +91,29 @@ export default function MyTravel() {
           />
           <div
             className={`gap-24 ${
-              cardData && cardData.pages?.[0].length > 0
+              cardData?.pages?.[0] && cardData && cardData.pages?.[0].length > 0
                 ? "grid grid-flow-row auto-rows-max grid-cols-4 tablet:grid-cols-3 mobile:grid-cols-2"
                 : "flex items-center justify-center self-stretch"
             }`}
           >
-            {cardData && cardData.pages?.[0].length > 0 && (
-              <>
-                {cardData.pages.map(page =>
-                  page.map((card: any, index: number) => (
-                    <MyTravelCard
-                      key={index}
-                      data={card}
-                      selectTab={selectTab}
-                    />
-                  )),
-                )}
-              </>
-            )}
+            {cardData?.pages?.[0] &&
+              cardData &&
+              cardData.pages?.[0].length > 0 && (
+                <>
+                  {cardData.pages.map(page =>
+                    page.map((card: any, index: number) => (
+                      <MyTravelCard
+                        key={index}
+                        data={card}
+                        selectTab={selectTab}
+                      />
+                    )),
+                  )}
+                </>
+              )}
 
             {!cardData ||
-              (cardData.pages?.[0].length === 0 && (
+              (cardData.pages?.[0] && cardData.pages?.[0].length === 0 && (
                 <motion.div
                   className="box"
                   initial={{ opacity: 0, scale: 0.5 }}
