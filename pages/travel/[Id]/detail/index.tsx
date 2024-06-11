@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import Head from "next/head";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
@@ -19,21 +20,27 @@ function Detail() {
   });
 
   return (
-    <div className="flex min-h-screen w-full flex-col bg-sky-50">
-      <Header />
-      <Article
-        id={data?.id}
-        data={data}
-        secret={data?.secret}
-        content={data?.content}
-      />
-      <div
-        className="fixed bottom-40 right-40 h-64 w-64 animate-bounce cursor-pointer tablet:h-56 tablet:w-56 mobile:bottom-20 mobile:right-20"
-        onClick={scrollToTop}
-      >
-        <Image src="/icons/rocket.svg" alt="로켓 이미지" fill />
+    <>
+      <Head>
+        <title>{data?.title}</title>
+        <meta name="description" content="여행 친구를 구해봐요! 길동무" />
+      </Head>
+      <div className="flex min-h-screen w-full flex-col bg-sky-50">
+        <Header />
+        <Article
+          id={data?.id}
+          data={data}
+          secret={data?.secret}
+          content={data?.content}
+        />
+        <div
+          className="fixed bottom-40 right-40 h-64 w-64 animate-bounce cursor-pointer tablet:h-56 tablet:w-56 mobile:bottom-20 mobile:right-20"
+          onClick={scrollToTop}
+        >
+          <Image src="/icons/rocket.svg" alt="로켓 이미지" fill />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

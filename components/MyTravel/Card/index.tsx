@@ -68,7 +68,7 @@ export default function MyTravelCard({ data, selectTab }: MyTravelCardProps) {
             className={`mb-160 flex flex-col gap-4 tablet:mb-170 ${isMobile ? "mobile:mb-24" : "mobile:mb-50"} `}
           >
             <Title title={data.title} isMobile={isMobile} type="front" />
-            <div className="text-text-white text-14 font-normal leading-5 tracking-tighter tablet:text-12">
+            <div className="text-14 font-normal leading-5 tracking-tighter text-text-white tablet:text-12">
               {data.nickname}
             </div>
           </div>
@@ -79,7 +79,7 @@ export default function MyTravelCard({ data, selectTab }: MyTravelCardProps) {
           setIsFlipped={setIsFlipped}
         />
       </div>
-      <div className="absolute inset-0 flex flex-col items-start rounded-[20px] border border-[#818CF8] bg-white p-24 [transform:rotateY(180deg)] [backface-visibility:hidden] tablet:p-20 mobile:p-12">
+      <div className="absolute inset-0 flex flex-col items-start rounded-[20px] border border-[#818CF8] bg-white p-24 [backface-visibility:hidden] [transform:rotateY(180deg)] tablet:p-20 mobile:p-12">
         <Title title={data.title} type="back" />
         <Image src={"/icons/dotline.svg"} alt="선" width={222} height={1} />
         <div

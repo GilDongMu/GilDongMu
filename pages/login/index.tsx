@@ -1,3 +1,4 @@
+import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -42,7 +43,7 @@ export default function Login() {
       });
 
       const { accessToken } = response.data;
-      document.cookie = `accessToken=${accessToken}; path=/; max-age=86400; secure; samesite=strict`;
+      document.cookie = `accessToken=${accessToken}; path=/; max-age=86400; samesite=strict`;
 
       router.push("/");
     } catch (error: any) {
@@ -66,6 +67,10 @@ export default function Login() {
 
   return (
     <>
+      <Head>
+        <title>로그인</title>
+        <meta name="description" content="여행 친구를 구해봐요! 길동무" />
+      </Head>
       {loginErrorModal ? (
         <Modal
           modalType={errorType === 0 ? "emailNotFound" : "passwordMismatch"}

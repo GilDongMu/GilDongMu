@@ -3,12 +3,14 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useMemo, useState } from "react";
 
+import useCookie from "@/hooks/useCookie";
 import { deleteBookMarks, postBookMarks } from "@/lib/api/bookmarks";
 
 function Card({ content }: { content: any }) {
   const router = useRouter();
   const [favor, setFavor] = useState(!content.myBookmark);
   const [favorCount, setFavorCount] = useState(content.countOfBookmarks);
+  const accessToken = useCookie("accessToken");
 
   const wrap = useMemo(() => {
     if (router.pathname === "/travel") {
@@ -32,14 +34,19 @@ function Card({ content }: { content: any }) {
   }, [content.gender]);
 
   const handleFavor = async () => {
-    if (favor) {
-      await postBookMarks(content.id);
-      setFavorCount((prev: number) => prev + 1);
+    if (accessToken !== null) {
+      if (favor) {
+        await postBookMarks(content.id);
+        setFavorCount((prev: number) => prev + 1);
+      } else {
+        await deleteBookMarks(content.id);
+        setFavorCount((prev: number) => prev - 1);
+      }
+      setFavor(prev => !prev);
     } else {
-      await deleteBookMarks(content.id);
-      setFavorCount((prev: number) => prev - 1);
+      alert("로그인 후 이용해 주시기 바랍니다.");
+      router.push("/login");
     }
-    setFavor(prev => !prev);
   };
 
   useEffect(() => {
@@ -106,10 +113,10 @@ function Card({ content }: { content: any }) {
             )}
           </div>
 
-          <div className="text-text-white mt-16 text-16 leading-tight tablet:text-14 ">
+          <div className="mt-16 text-16 leading-tight text-text-white tablet:text-14 ">
             {content.title}
           </div>
-          <div className="text-text-white mt-1 text-14">{content.nickname}</div>
+          <div className="mt-1 text-14 text-text-white">{content.nickname}</div>
         </div>
       </div>
 
