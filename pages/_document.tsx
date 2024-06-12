@@ -5,6 +5,8 @@ export default function Document() {
     <Html lang="ko">
       <Head>
         <link rel="icon" href="/icons/symbol.svg" />
+        <meta name="theme-color" content="#3D39F1" />
+        <link rel="manifest" href="/manifest.json" />
 
         {/* Open Graph 메타 태그 */}
         <meta property="og:title" content="길동무 gildongmu" />

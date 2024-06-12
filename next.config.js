@@ -1,5 +1,16 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const prod = process.env.NODE_ENV === "production";
+
+const runtimeCaching = require("next-pwa/cache");
+const withPWA = require("next-pwa")({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+  runtimeCaching,
+  disable: prod ? false : true,
+});
+
+const nextConfig = withPWA({
   images: {
     remotePatterns: [
       {
@@ -35,6 +46,6 @@ const nextConfig = {
       destination: "http://3.38.76.39:8080",
     },
   ],
-};
+});
 
 module.exports = nextConfig;

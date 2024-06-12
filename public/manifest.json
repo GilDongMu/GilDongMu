@@ -1,0 +1,18 @@
+{
+  "name": "길동무 gildongmu",
+  "short_name": "길동무",
+  "description": "여행 친구를 구해봐요! 길동무",
+  "theme_color": "#ffc211",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "./icons/symbol.svg",
+      "sizes": "72x72 96x96 128x128 144x144 152x152 192x192 384x384 512x512",
+      "type": "image/svg+xml",
+      "purpose": "maskable any"
+    }
+  ]
+}
