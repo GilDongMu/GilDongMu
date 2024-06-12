@@ -2,6 +2,7 @@ import Head from "next/head";
 
 import WritingButton from "@/components/Button/Writing";
 import Header from "@/components/Header";
+import InstallButton from "@/components/InstallBtn";
 import Contents from "@/components/Main/Contents";
 import Footer from "@/components/Main/Footer";
 
@@ -18,6 +19,7 @@ export default function Main() {
       <Contents />
       <WritingButton />
       <Footer />
+      <InstallButton />
     </>
   );
 }
