@@ -8,6 +8,7 @@ import { useOnClickOutside } from "usehooks-ts";
 
 import Dropdown from "@/components/DropDown";
 import Hammenu from "@/components/Gnb/HamMenu";
+import InstallButton from "@/components/InstallBtn";
 // import Notice from "@/components/Gnb/Notice";
 import useCookie from "@/hooks/useCookie";
 import useToggle from "@/hooks/useToggle";
@@ -175,6 +176,7 @@ function Gnb() {
               {!dark ? "🌞" : "🌙"}
             </div>
           </div>
+          <InstallButton />
           {/* <div
             className="relative mx-5 h-26 w-26 cursor-pointer"
             onClick={handleNotice}
