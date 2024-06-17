@@ -4,7 +4,8 @@
 
 @font-face {
   font-family: "NanumSquareRound";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff") format("woff");
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff")
+    format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -15,12 +16,13 @@
   }
 }
 
-@layer components {}
+@layer components {
+}
 
-@layer utilities {}
+@layer utilities {
+}
 
 @layer base {
-
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -234,8 +236,6 @@
     --stone-100: rgb(67, 67, 67);
 
     --text-white: #ffffff;
-
-
   }
 }
 
@@ -254,6 +254,7 @@
 .slick-arrow.slick-next,
 .slick-arrow.slick-prev {
   display: none !important;
+  top: 155px !important;
 }
 
 .my-custom-slider .slick-arrow.slick-next,
@@ -342,6 +343,5 @@
 /* 호버 시 스크롤바 핸들 스타일 변경 */
 .scrollbar-hide:hover::-webkit-scrollbar-thumb {
   background-color: rgb(219, 219, 219);
-  ;
   /* 호버 시 스크롤바 핸들의 배경 색상을 어둡게 조정 */
 }
