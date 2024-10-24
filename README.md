@@ -39,7 +39,7 @@
 | 김범승 |
 ### Back-end
 | **송원선** | **이서연** |
-### Design
+### Design
 | **임아현** |
 
 
@@ -47,7 +47,7 @@
 
 ## 1. 개발 환경
 
-- Front : Next, TailWind, React Query,Axios, React hook form, Axios, stomp
+- Front : Next, TailWind, React Query,Axios, React hook form, Axios, stomp
 - Back-end : SpringBoot, MySql, Redis, Elastic Search, MongoDB, kafka, stomp
 - 버전 및 이슈관리 : Github, Github Issues, Github Project
 - 협업 툴 : Discord, Notion, Figma
